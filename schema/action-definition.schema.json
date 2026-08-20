@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://actionclip.app/schemas/marketplace/action-definition-v1.json",
+  "title": "ActionClip Marketplace Action Definition",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "documentType",
+    "catalogRevision",
+    "publishedAt",
+    "action"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "documentType": { "const": "actionclip.marketplace.action-definition" },
+    "catalogRevision": { "type": "string", "minLength": 1 },
+    "publishedAt": { "type": "string", "format": "date-time" },
+    "action": { "$ref": "#/$defs/action" }
+  },
+  "$defs": {
+    "integration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "icon", "summary"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9-]{1,64}$" },
+        "name": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "icon": { "type": "string", "minLength": 1, "maxLength": 160 },
+        "summary": { "type": "string", "minLength": 1, "maxLength": 500 },
+        "appIcon": { "type": "string", "pattern": "^[a-z0-9-]{1,64}$" }
+      }
+    },
+    "action": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name",
+        "icon",
+        "summary",
+        "details",
+        "template",
+        "exampleInput",
+        "exampleOutput",
+        "requirements",
+        "privacySummary",
+        "category",
+        "type",
+        "outputMode",
+        "privacyKind"
+      ],
+      "properties": {
+        "id": { "type": "string", "format": "uuid" },
+        "name": { "type": "string", "minLength": 1 },
+        "icon": { "type": "string", "minLength": 1 },
+        "summary": { "type": "string", "minLength": 1 },
+        "details": { "type": "string", "minLength": 1 },
+        "template": { "type": "string", "minLength": 1 },
+        "exampleInput": { "type": "string", "minLength": 1 },
+        "exampleOutput": { "type": "string", "minLength": 1 },
+        "requirements": { "type": "string", "minLength": 1 },
+        "privacySummary": { "type": "string", "minLength": 1 },
+        "category": {
+          "enum": ["textTools", "clipboardTools", "developerTools", "productivity", "appIntegrations"]
+        },
+        "type": {
+          "enum": ["built_in", "ai_prompt", "url", "apple_script", "javascript"]
+        },
+        "outputMode": {
+          "enum": ["text_replaceable", "copy_only", "opens_externally"]
+        },
+        "privacyKind": {
+          "enum": ["onDevice", "online", "externalApp"]
+        },
+        "appIcon": { "type": "string", "pattern": "^[a-z0-9-]{1,64}$" },
+        "section": { "const": "markdown" },
+        "integration": { "$ref": "#/$defs/integration" }
+      }
+    }
+  }
+}
+

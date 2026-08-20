@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "category": "developerTools",
+    "details": "Parses the complete selection and reports its top-level JSON type. Malformed input returns a specific JavaScript parsing error instead of changing the text.",
+    "exampleInput": "[1, 2, {\"ready\": true}]",
+    "exampleOutput": "Valid JSON — array.",
+    "icon": "fluent:checkmark-circle-24-regular",
+    "id": "510A0C00-0023-4D9A-A001-000000000023",
+    "name": "Validate JSON",
+    "outputMode": "copy_only",
+    "privacyKind": "onDevice",
+    "privacySummary": "Runs locally in ActionClip’s JavaScript sandbox. Selected text does not leave your Mac.",
+    "requirements": "No setup required.",
+    "summary": "Check whether selected text is valid JSON.",
+    "template": "function run(selected_text) {\n  let value;\n  try {\n    value = JSON.parse(selected_text);\n  } catch (error) {\n    throw new Error(\"Invalid JSON: \" + error.message);\n  }\n\n  const kind = value === null ? \"null\" : Array.isArray(value) ? \"array\" : typeof value;\n  return \"Valid JSON — \" + kind + \".\";\n}",
+    "type": "javascript"
+  }
+}

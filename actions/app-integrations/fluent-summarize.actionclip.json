@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "category": "appIntegrations",
+    "details": "Reproduces Fluent's generated PopClip action by sending the selected text and Fluent action identifier summarizeText through the FLNT/ACTN Apple event.",
+    "exampleInput": "A long article or document excerpt that needs a short overview.",
+    "exampleOutput": "Fluent runs Summarize on the selected text.",
+    "icon": "fluent:text-description-24-regular",
+    "id": "510A0C00-0058-4D9A-A001-000000000058",
+    "integration": {
+      "appIcon": "fluent-app",
+      "icon": "fluent:apps-24-regular",
+      "id": "fluent",
+      "name": "Fluent",
+      "summary": "AI writing, translation, and editing actions powered by Fluent."
+    },
+    "name": "Fluent — Summarize",
+    "outputMode": "opens_externally",
+    "privacyKind": "externalApp",
+    "privacySummary": "ActionClip passes the selected text to Fluent on this Mac. Fluent then uses the local or cloud model configured in Fluent.",
+    "requirements": "Fluent 1.7.1 or later must be installed and the corresponding built-in Fluent action must be available. macOS may ask you to allow ActionClip to control Fluent.",
+    "summary": "Summarize the selected text using Fluent.",
+    "template": "tell application id \"net.epicbits.FluentStandalone\"\n    «event FLNTACTN» {\"summarizeText\", \"{{selected_text}}\"}\nend tell",
+    "type": "apple_script"
+  }
+}

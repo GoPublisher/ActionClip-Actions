@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "category": "developerTools",
+    "details": "Decodes a complete percent-encoded component as UTF-8 and reports malformed escape sequences instead of returning partial output.",
+    "exampleInput": "push%20%2F%20pull%3F",
+    "exampleOutput": "push / pull?",
+    "icon": "fluent:lock-open-24-regular",
+    "id": "510A0C00-0025-4D9A-A001-000000000025",
+    "name": "URL Decode",
+    "outputMode": "text_replaceable",
+    "privacyKind": "onDevice",
+    "privacySummary": "Runs locally in ActionClip’s JavaScript sandbox. Selected text does not leave your Mac.",
+    "requirements": "No setup required.",
+    "summary": "Decode percent-encoded selected text.",
+    "template": "function run(selected_text) {\n  try {\n    return decodeURIComponent(selected_text);\n  } catch (error) {\n    throw new Error(\"Invalid percent-encoded text: \" + error.message);\n  }\n}",
+    "type": "javascript"
+  }
+}

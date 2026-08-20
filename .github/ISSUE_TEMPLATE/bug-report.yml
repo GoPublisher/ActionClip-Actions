@@ -1,0 +1,34 @@
+name: Report an action bug
+description: Report incorrect or unexpected behavior in an existing action.
+title: "Action bug: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Do not report security or privacy vulnerabilities here. Use a private security advisory instead.
+  - type: input
+    id: action
+    attributes:
+      label: Action name or ID
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: ActionClip and macOS versions
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: What happened?
+      description: Use non-sensitive sample text only.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+    validations:
+      required: true
+

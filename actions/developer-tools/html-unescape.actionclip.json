@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "category": "developerTools",
+    "details": "Decodes common typographic and currency entities plus decimal or hexadecimal Unicode references, while leaving unknown or invalid entities unchanged.",
+    "exampleInput": "&lt;p&gt;Ready &amp; waiting &#x1F44B;&lt;/p&gt;",
+    "exampleOutput": "<p>Ready & waiting 👋</p>",
+    "icon": "fluent:code-block-edit-24-regular",
+    "id": "510A0C00-0027-4D9A-A001-000000000027",
+    "name": "HTML Unescape",
+    "outputMode": "text_replaceable",
+    "privacyKind": "onDevice",
+    "privacySummary": "Runs locally in ActionClip’s JavaScript sandbox. Selected text does not leave your Mac.",
+    "requirements": "No setup required.",
+    "summary": "Decode common named and numeric HTML entities.",
+    "template": "function run(selected_text) {\n  const named = {\n    amp: \"&\", lt: \"<\", gt: \">\", quot: '\"', apos: \"'\", nbsp: \"\\u00A0\",\n    ndash: \"–\", mdash: \"—\", hellip: \"…\", copy: \"©\", reg: \"®\", trade: \"™\",\n    euro: \"€\", pound: \"£\", yen: \"¥\", cent: \"¢\", laquo: \"«\", raquo: \"»\",\n    lsquo: \"‘\", rsquo: \"’\", ldquo: \"“\", rdquo: \"”\", bull: \"•\", middot: \"·\",\n    times: \"×\", divide: \"÷\"\n  };\n\n  return selected_text.replace(/&(#(?:x[0-9a-f]+|\\d+)|[a-z][a-z0-9]+);/gi, (match, entity) => {\n    if (entity[0] !== \"#\") return named[entity.toLowerCase()] ?? match;\n    const isHex = entity[1].toLowerCase() === \"x\";\n    const value = parseInt(entity.slice(isHex ? 2 : 1), isHex ? 16 : 10);\n    if (!Number.isFinite(value) || value < 0 || value > 0x10FFFF || (value >= 0xD800 && value <= 0xDFFF)) {\n      return match;\n    }\n    return String.fromCodePoint(value);\n  });\n}",
+    "type": "javascript"
+  }
+}

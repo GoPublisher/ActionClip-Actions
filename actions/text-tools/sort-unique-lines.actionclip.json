@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "category": "textTools",
+    "details": "Trims a list, removes exact duplicate lines, and sorts the remaining entries case-insensitively with a deterministic tie-breaker.",
+    "exampleInput": "Mango\nApple\nPear\nApple",
+    "exampleOutput": "Apple\nMango\nPear",
+    "icon": "fluent:text-sort-ascending-24-regular",
+    "id": "510A0C00-0003-4D9A-A001-000000000003",
+    "name": "Sort Unique Lines",
+    "outputMode": "text_replaceable",
+    "privacyKind": "onDevice",
+    "privacySummary": "Runs locally in ActionClip’s JavaScript sandbox. Selected text does not leave your Mac.",
+    "requirements": "No setup required.",
+    "summary": "Remove duplicate lines and sort the remaining text.",
+    "template": "function run(selected_text) {\n  const lines = selected_text\n    .split(/\\r\\n?|\\n/)\n    .map((line) => line.trim())\n    .filter(Boolean);\n\n  function naturalCompare(a, b) {\n    const chunksA = a.match(/\\d+|\\D+/g) || [];\n    const chunksB = b.match(/\\d+|\\D+/g) || [];\n    const count = Math.max(chunksA.length, chunksB.length);\n\n    for (let index = 0; index < count; index += 1) {\n      if (chunksA[index] === undefined) return -1;\n      if (chunksB[index] === undefined) return 1;\n      const partA = chunksA[index];\n      const partB = chunksB[index];\n      const numericA = /^\\d+$/.test(partA);\n      const numericB = /^\\d+$/.test(partB);\n\n      if (numericA && numericB) {\n        const valueA = partA.replace(/^0+(?=\\d)/, \"\");\n        const valueB = partB.replace(/^0+(?=\\d)/, \"\");\n        if (valueA.length !== valueB.length) return valueA.length - valueB.length;\n        if (valueA !== valueB) return valueA < valueB ? -1 : 1;\n        if (partA.length !== partB.length) return partA.length - partB.length;\n      } else {\n        const foldedA = partA.toLocaleLowerCase();\n        const foldedB = partB.toLocaleLowerCase();\n        if (foldedA !== foldedB) return foldedA < foldedB ? -1 : 1;\n      }\n    }\n\n    return a < b ? -1 : a > b ? 1 : 0;\n  }\n\n  return [...new Set(lines)].sort(naturalCompare).join(\"\\n\");\n}",
+    "type": "javascript"
+  }
+}

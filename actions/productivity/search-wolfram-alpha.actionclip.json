@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "category": "productivity",
+    "details": "Opens Wolfram Alpha with the selection encoded as a computational knowledge query.",
+    "exampleInput": "integrate x^2 from 0 to 3",
+    "exampleOutput": "Wolfram Alpha opens with a computed result.",
+    "icon": "fluent:math-formula-24-regular",
+    "id": "510A0C00-0050-4D9A-A001-000000000050",
+    "name": "Search Wolfram Alpha",
+    "outputMode": "opens_externally",
+    "privacyKind": "online",
+    "privacySummary": "The selected text is sent to wolframalpha.com as part of the URL when you run the action.",
+    "requirements": "Online Actions must be enabled.",
+    "summary": "Ask Wolfram Alpha about the selected expression or topic.",
+    "template": "https://www.wolframalpha.com/input?i={{url_encoded__selected_text}}",
+    "type": "url"
+  }
+}

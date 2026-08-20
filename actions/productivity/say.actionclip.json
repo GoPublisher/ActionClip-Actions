@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "category": "productivity",
+    "details": "Uses AVSpeechSynthesizer on this Mac. Starting the action stops any speech previously started by this action and speaks the new selection using the current system voice.",
+    "exampleInput": "ActionClip can read this sentence aloud.",
+    "exampleOutput": "macOS speaks the selected sentence.",
+    "icon": "fluent:speaker-24-regular",
+    "id": "510A0C00-0066-4D9A-A001-000000000066",
+    "name": "Say",
+    "outputMode": "copy_only",
+    "privacyKind": "onDevice",
+    "privacySummary": "Speech synthesis runs locally with the macOS system voice. The selected text does not leave your Mac.",
+    "requirements": "A macOS system voice must be available. Voice preferences are managed by macOS.",
+    "summary": "Speak the selected text with the macOS system voice.",
+    "template": "say_selection",
+    "type": "built_in"
+  }
+}

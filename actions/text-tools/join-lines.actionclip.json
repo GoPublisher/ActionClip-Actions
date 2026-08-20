@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "category": "textTools",
+    "details": "Handles Unix, classic Mac, and Windows line endings, trims each line, removes blank lines, and joins the remainder with one space.",
+    "exampleInput": "First line\r\n  second line  \n\nthird line",
+    "exampleOutput": "First line second line third line",
+    "icon": "fluent:text-wrap-24-regular",
+    "id": "510A0C00-0008-4D9A-A001-000000000008",
+    "name": "Join Lines",
+    "outputMode": "text_replaceable",
+    "privacyKind": "onDevice",
+    "privacySummary": "Runs locally in ActionClip’s JavaScript sandbox. Selected text does not leave your Mac.",
+    "requirements": "No setup required.",
+    "summary": "Join non-empty selected lines with spaces.",
+    "template": "function run(selected_text) {\n  return selected_text\n    .split(/\\r\\n?|\\n/)\n    .map((line) => line.trim())\n    .filter((line) => line.length > 0)\n    .join(\" \");\n}",
+    "type": "javascript"
+  }
+}

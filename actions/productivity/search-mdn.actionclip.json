@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "category": "productivity",
+    "details": "Opens Mozilla’s MDN documentation search for a selected web API, CSS property, HTML element, or JavaScript term.",
+    "exampleInput": "ResizeObserver",
+    "exampleOutput": "MDN Web Docs opens with matching documentation.",
+    "icon": "fluent:document-javascript-24-regular",
+    "id": "510A0C00-0048-4D9A-A001-000000000048",
+    "name": "Search MDN",
+    "outputMode": "opens_externally",
+    "privacyKind": "online",
+    "privacySummary": "The selected text is sent to developer.mozilla.org as part of the URL when you run the action.",
+    "requirements": "Online Actions must be enabled.",
+    "summary": "Search MDN Web Docs for the selected text.",
+    "template": "https://developer.mozilla.org/search?q={{url_encoded__selected_text}}",
+    "type": "url"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "category": "developerTools",
+    "details": "Removes whitespace only outside JSON strings after validation, preserving key order, duplicate keys, escape spelling, and large numeric literals exactly.",
+    "exampleInput": "{\n  \"large\": 9007199254740993,\n  \"ok\": true\n}",
+    "exampleOutput": "{\"large\":9007199254740993,\"ok\":true}",
+    "icon": "fluent:arrow-minimize-24-regular",
+    "id": "510A0C00-0022-4D9A-A001-000000000022",
+    "name": "Minify JSON",
+    "outputMode": "text_replaceable",
+    "privacyKind": "onDevice",
+    "privacySummary": "Runs locally in ActionClip’s JavaScript sandbox. Selected text does not leave your Mac.",
+    "requirements": "No setup required.",
+    "summary": "Validate JSON and remove insignificant whitespace.",
+    "template": "function run(selected_text) {\n  const input = selected_text.trim();\n  try {\n    JSON.parse(input);\n  } catch (error) {\n    throw new Error(\"Invalid JSON: \" + error.message);\n  }\n\n  let output = \"\";\n  let inString = false;\n  let escaped = false;\n  for (const character of input) {\n    if (inString) {\n      output += character;\n      if (escaped) escaped = false;\n      else if (character === \"\\\\\") escaped = true;\n      else if (character === '\"') inString = false;\n    } else if (character === '\"') {\n      inString = true;\n      output += character;\n    } else if (!/\\s/.test(character)) {\n      output += character;\n    }\n  }\n  return output;\n}",
+    "type": "javascript"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "category": "textTools",
+    "details": "Prefixes each line with a Markdown blockquote marker, including blank lines, and preserves a trailing line break.",
+    "exampleInput": "First line\n\nSecond line",
+    "exampleOutput": "> First line\n>\n> Second line",
+    "icon": "fluent:text-quote-24-regular",
+    "id": "510A0C00-0012-4D9A-A001-000000000012",
+    "name": "Markdown Blockquote",
+    "outputMode": "text_replaceable",
+    "privacyKind": "onDevice",
+    "privacySummary": "Runs locally in ActionClip’s JavaScript sandbox. Selected text does not leave your Mac.",
+    "requirements": "No setup required.",
+    "section": "markdown",
+    "summary": "Add one Markdown quote level to selected lines.",
+    "template": "function run(selected_text) {\n  const normalized = selected_text.replace(/\\r\\n?|\\n/g, \"\\n\");\n  const hadTrailingNewline = normalized.endsWith(\"\\n\");\n  const lines = normalized.split(\"\\n\");\n  if (hadTrailingNewline) lines.pop();\n\n  const output = lines\n    .map((line) => line.length === 0 ? \">\" : \"> \" + line)\n    .join(\"\\n\");\n  return output + (hadTrailingNewline ? \"\\n\" : \"\");\n}",
+    "type": "javascript"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "category": "developerTools",
+    "details": "Splits mixed identifiers into words, joins them with underscores, and uppercases the result for constants and environment keys.",
+    "exampleInput": "HTTP response code",
+    "exampleOutput": "HTTP_RESPONSE_CODE",
+    "icon": "fluent:text-case-uppercase-24-regular",
+    "id": "510A0C00-0035-4D9A-A001-000000000035",
+    "name": "Convert to CONSTANT_CASE",
+    "outputMode": "text_replaceable",
+    "privacyKind": "onDevice",
+    "privacySummary": "Runs locally in ActionClip’s JavaScript sandbox. Selected text does not leave your Mac.",
+    "requirements": "No setup required.",
+    "summary": "Convert selected words or identifiers to CONSTANT_CASE.",
+    "template": "function run(selected_text) {\n  const words = selected_text\n    .normalize(\"NFKD\")\n    .replace(/\\p{M}+/gu, \"\")\n    .replace(/([A-Z\\d]+)([A-Z][a-z])/g, \"$1 $2\")\n    .replace(/([a-z\\d])([A-Z])/g, \"$1 $2\")\n    .replace(/[^\\p{L}\\p{N}]+/gu, \" \")\n    .trim()\n    .split(/\\s+/)\n    .filter(Boolean)\n    .map((word) => word.toLowerCase());\n\n  if (!words.length) return \"\";\n  const capitalize = (word) => word.charAt(0).toUpperCase() + word.slice(1);\n  return words.join(\"_\").toUpperCase();\n}",
+    "type": "javascript"
+  }
+}

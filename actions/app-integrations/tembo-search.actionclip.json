@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "appIcon": "tembo",
+    "category": "appIntegrations",
+    "details": "Invokes Tembo's published “Search in Tembo” macOS Service. Multi-line selections and selections longer than 300 characters are rejected before the Service is called.",
+    "exampleInput": "ActionClip release notes",
+    "exampleOutput": "Tembo searches the Mac for the selected phrase.",
+    "icon": "fluent:search-24-regular",
+    "id": "510A0C00-0080-4D9A-A001-000000000080",
+    "name": "Tembo Search",
+    "outputMode": "opens_externally",
+    "privacyKind": "externalApp",
+    "privacySummary": "ActionClip passes the selected text locally to Tembo through its macOS Service. The selection does not leave your Mac.",
+    "requirements": "Tembo 1, 2, or 3 must be installed with its Search Service enabled. Select one line of 300 characters or fewer.",
+    "summary": "Search for the selected text in Tembo.",
+    "template": "tembo_search",
+    "type": "built_in"
+  }
+}

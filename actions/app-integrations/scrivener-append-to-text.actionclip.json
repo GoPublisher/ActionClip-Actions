@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "category": "appIntegrations",
+    "details": "Invokes Scrivener's published “Scrivener/Scrivener: Append to Text” macOS Service with the selection.",
+    "exampleInput": "An additional paragraph for the current document.",
+    "exampleOutput": "Scrivener appends the paragraph to the current document text.",
+    "icon": "fluent:document-arrow-right-24-regular",
+    "id": "510A0C00-0082-4D9A-A001-000000000082",
+    "integration": {
+      "appIcon": "scrivener",
+      "icon": "fluent:document-text-24-regular",
+      "id": "scrivener",
+      "name": "Scrivener",
+      "summary": "Create clippings or append selected text to a Scrivener project."
+    },
+    "name": "Scrivener — Append to Text",
+    "outputMode": "opens_externally",
+    "privacyKind": "externalApp",
+    "privacySummary": "ActionClip passes the selected text locally to Scrivener through its macOS Service. Scrivener controls any later sync.",
+    "requirements": "Scrivener 2 or 3 must be installed, a project must be open, and its Append to Text Service must be enabled.",
+    "summary": "Append the selection to the current Scrivener document text.",
+    "template": "scrivener_append_text",
+    "type": "built_in"
+  }
+}

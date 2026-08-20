@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "appIcon": "rewritebar",
+    "category": "appIntegrations",
+    "details": "Matches RewriteBar's generic PopClip integration: ActionClip copies the selection to the general clipboard, then opens rewritebar://command-menu so RewriteBar can read it.",
+    "exampleInput": "Rewrite this sentence more clearly.",
+    "exampleOutput": "RewriteBar opens its command menu with the selection on the clipboard.",
+    "icon": "fluent:wand-24-regular",
+    "id": "510A0C00-0068-4D9A-A001-000000000068",
+    "name": "RewriteBar",
+    "outputMode": "opens_externally",
+    "privacyKind": "externalApp",
+    "privacySummary": "ActionClip places the selected text on the local clipboard and passes control to RewriteBar. RewriteBar's configured provider determines whether the text is processed locally or online.",
+    "requirements": "RewriteBar must be installed. This integration intentionally replaces the current clipboard contents.",
+    "summary": "Open RewriteBar's command menu for the selected text.",
+    "template": "rewritebar_command_menu",
+    "type": "built_in"
+  }
+}

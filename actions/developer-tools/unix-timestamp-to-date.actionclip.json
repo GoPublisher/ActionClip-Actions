@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "category": "developerTools",
+    "details": "Validates numeric input, automatically distinguishes common second and millisecond timestamps, and returns a stable ISO-style UTC result.",
+    "exampleInput": "1535438729",
+    "exampleOutput": "2018-08-28 06:45:29 UTC",
+    "icon": "fluent:clock-24-regular",
+    "id": "510A0C00-0036-4D9A-A001-000000000036",
+    "name": "Unix Timestamp to Date",
+    "outputMode": "copy_only",
+    "privacyKind": "onDevice",
+    "privacySummary": "Runs locally in ActionClip’s JavaScript sandbox. Selected text does not leave your Mac.",
+    "requirements": "No setup required.",
+    "summary": "Convert Unix seconds or milliseconds to a UTC date.",
+    "template": "function run(selected_text) {\n  const input = selected_text.trim().replace(/\\s+/g, \"\");\n  if (!/^[+-]?\\d+(?:\\.\\d+)?$/.test(input)) {\n    throw new Error(\"Enter a Unix timestamp in seconds or milliseconds.\");\n  }\n  const numeric = Number(input);\n  if (!Number.isFinite(numeric)) throw new Error(\"Timestamp is outside the supported range.\");\n  const milliseconds = Math.abs(numeric) >= 100000000000 ? numeric : numeric * 1000;\n  const date = new Date(milliseconds);\n  if (!Number.isFinite(date.getTime())) throw new Error(\"Timestamp is outside the supported range.\");\n  return date.toISOString().replace(\"T\", \" \").replace(/\\.000Z$/, \" UTC\").replace(/Z$/, \" UTC\");\n}",
+    "type": "javascript"
+  }
+}

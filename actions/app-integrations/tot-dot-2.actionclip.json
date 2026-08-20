@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "category": "appIntegrations",
+    "details": "Opens Tot's documented tot://2/append URL with the selection safely percent-encoded. Each dot is a separate action so the destination is explicit without hidden settings.",
+    "exampleInput": "A quick note for Tot Dot 2.",
+    "exampleOutput": "Tot appends the selected text to Dot 2.",
+    "icon": "fluent:note-24-regular",
+    "id": "510A0C00-0074-4D9A-A001-000000000074",
+    "integration": {
+      "appIcon": "tot",
+      "icon": "fluent:note-24-regular",
+      "id": "tot",
+      "name": "Tot",
+      "summary": "Append selected text directly to any Tot dot."
+    },
+    "name": "Tot — Dot 2",
+    "outputMode": "opens_externally",
+    "privacyKind": "externalApp",
+    "privacySummary": "ActionClip passes the selected text locally to Tot through its app URL. Tot controls any later sync.",
+    "requirements": "Tot must be installed and Dot 2 must be available.",
+    "summary": "Append the selected text to Tot Dot 2.",
+    "template": "tot_append_dot_2",
+    "type": "built_in"
+  }
+}

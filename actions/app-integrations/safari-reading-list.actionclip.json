@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "appIcon": "safari",
+    "category": "appIntegrations",
+    "details": "Detects the first HTTP or HTTPS URL in the selection and passes it to macOS's Add to Safari Reading List sharing service. Additional links are intentionally ignored.",
+    "exampleInput": "Read later: https://example.com/article",
+    "exampleOutput": "https://example.com/article is added to Safari Reading List.",
+    "icon": "fluent:reading-list-24-regular",
+    "id": "510A0C00-0084-4D9A-A001-000000000084",
+    "name": "Safari Reading List",
+    "outputMode": "opens_externally",
+    "privacyKind": "externalApp",
+    "privacySummary": "ActionClip passes the first URL detected in the selected text to Safari's local Reading List sharing service. Safari and iCloud control any later sync.",
+    "requirements": "Safari Reading List must be available. Select text containing at least one HTTP or HTTPS web address.",
+    "summary": "Add the first selected web link to Safari Reading List.",
+    "template": "safari_reading_list",
+    "triggerPattern": "*.*",
+    "type": "built_in"
+  }
+}

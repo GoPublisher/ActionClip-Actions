@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "category": "clipboardTools",
+    "details": "Replaces the editable selection with the clipboard's plain text, then places the original selected text on the clipboard. The swap is guarded so a newer user Copy or Cut is never overwritten while the source app is completing the paste.",
+    "exampleInput": "Draft A",
+    "exampleOutput": "Selection becomes the previous clipboard text; clipboard becomes Draft A.",
+    "icon": "fluent:arrow-swap-24-regular",
+    "id": "510A0C00-0053-4D9A-A001-000000000053",
+    "name": "Swap with Clipboard",
+    "outputMode": "copy_only",
+    "privacyKind": "onDevice",
+    "privacySummary": "ActionClip exchanges the selected text and macOS clipboard text locally. Neither value leaves your Mac.",
+    "requirements": "The source selection must be editable and the clipboard must contain plain text.",
+    "summary": "Swap selected text with the clipboard text.",
+    "template": "swap_with_clipboard",
+    "type": "built_in"
+  }
+}

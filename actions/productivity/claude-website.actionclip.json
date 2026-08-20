@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "category": "productivity",
+    "details": "Opens claude.ai/new with up to 8,000 selected characters encoded into the website's q parameter. It does not call Anthropic's API.",
+    "exampleInput": "Summarize the tradeoffs in this proposal.",
+    "exampleOutput": "Claude opens a new conversation containing the selected text.",
+    "icon": "fluent:brain-sparkle-24-regular",
+    "id": "510A0C00-0065-4D9A-A001-000000000065",
+    "name": "Claude Website",
+    "outputMode": "opens_externally",
+    "privacyKind": "online",
+    "privacySummary": "The selected text is sent to claude.ai as part of the URL when you run the action.",
+    "requirements": "Online Actions must be enabled. Claude sign-in may be required. Selections longer than 8,000 characters may exceed the website handoff limit.",
+    "summary": "Start a new Claude conversation with the selected text.",
+    "template": "https://claude.ai/new?q={{url_encoded__selected_text}}",
+    "type": "url"
+  }
+}

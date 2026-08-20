@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "appIcon": "upnote",
+    "category": "appIntegrations",
+    "details": "Opens UpNote's documented x-callback URL with the selection encoded as Markdown text. ActionClip does not add a title, notebook, or browser source URL.",
+    "exampleInput": "## Launch notes\n\n- Confirm date",
+    "exampleOutput": "UpNote creates a new note containing the Markdown text.",
+    "icon": "fluent:note-add-24-regular",
+    "id": "510A0C00-0072-4D9A-A001-000000000072",
+    "name": "UpNote",
+    "outputMode": "opens_externally",
+    "privacyKind": "externalApp",
+    "privacySummary": "ActionClip passes the selected text locally to UpNote through its app URL. UpNote controls any later sync.",
+    "requirements": "UpNote must be installed and its x-callback URL support must be enabled.",
+    "summary": "Create a new UpNote note from the selected text.",
+    "template": "upnote_new_markdown_note",
+    "type": "built_in"
+  }
+}

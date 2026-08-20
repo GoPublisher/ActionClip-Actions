@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "category": "developerTools",
+    "details": "Iterates by Unicode scalar rather than UTF-16 code unit and labels spaces, tabs, and line breaks so invisible characters remain understandable.",
+    "exampleInput": "A 👋",
+    "exampleOutput": "U+0041  A\nU+0020  SPACE\nU+1F44B  👋",
+    "icon": "fluent:scan-text-24-regular",
+    "id": "510A0C00-0030-4D9A-A001-000000000030",
+    "name": "Unicode Inspector",
+    "outputMode": "copy_only",
+    "privacyKind": "onDevice",
+    "privacySummary": "Runs locally in ActionClip’s JavaScript sandbox. Selected text does not leave your Mac.",
+    "requirements": "No setup required.",
+    "summary": "Show every selected Unicode code point.",
+    "template": "function run(selected_text) {\n  if (!selected_text) return \"No characters selected.\";\n  return Array.from(selected_text).map((character) => {\n    const value = character.codePointAt(0);\n    const code = \"U+\" + value.toString(16).toUpperCase().padStart(4, \"0\");\n    let label = character;\n    if (character === \" \") label = \"SPACE\";\n    else if (character === \"\\n\") label = \"LINE FEED\";\n    else if (character === \"\\r\") label = \"CARRIAGE RETURN\";\n    else if (character === \"\\t\") label = \"TAB\";\n    return code + \"  \" + label;\n  }).join(\"\\n\");\n}",
+    "type": "javascript"
+  }
+}

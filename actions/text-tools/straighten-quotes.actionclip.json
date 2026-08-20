@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "category": "textTools",
+    "details": "Replaces common curly single and double quotation marks while leaving guillemets, CJK quotes, and unrelated punctuation unchanged.",
+    "exampleInput": "“ActionClip’s ready,” she said.",
+    "exampleOutput": "\"ActionClip's ready,\" she said.",
+    "icon": "fluent:text-quote-24-regular",
+    "id": "510A0C00-0016-4D9A-A001-000000000016",
+    "name": "Straighten Quotes",
+    "outputMode": "text_replaceable",
+    "privacyKind": "onDevice",
+    "privacySummary": "Runs locally in ActionClip’s JavaScript sandbox. Selected text does not leave your Mac.",
+    "requirements": "No setup required.",
+    "summary": "Convert typographic quotes to straight ASCII quotes.",
+    "template": "function run(selected_text) {\n  return selected_text\n    .replace(/[‘’‚‛]/g, \"'\")\n    .replace(/[“”„‟]/g, '\"');\n}",
+    "type": "javascript"
+  }
+}

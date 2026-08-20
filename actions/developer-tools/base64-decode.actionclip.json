@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "category": "developerTools",
+    "details": "Accepts padded or unpadded standard and URL-safe Base64, ignores whitespace, and rejects malformed Base64 or invalid UTF-8 bytes.",
+    "exampleInput": "QWN0aW9uQ2xpcA==",
+    "exampleOutput": "ActionClip",
+    "icon": "fluent:lock-open-24-regular",
+    "id": "510A0C00-0029-4D9A-A001-000000000029",
+    "name": "Base64 Decode",
+    "outputMode": "text_replaceable",
+    "privacyKind": "onDevice",
+    "privacySummary": "Runs locally in ActionClip’s JavaScript sandbox. Selected text does not leave your Mac.",
+    "requirements": "No setup required.",
+    "summary": "Decode Base64 into validated UTF-8 text.",
+    "template": "function run(selected_text) {\n  const alphabet = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\";\n  let input = selected_text.replace(/\\s+/g, \"\").replace(/-/g, \"+\").replace(/_/g, \"/\");\n  if (!/^[A-Za-z0-9+/]*={0,2}$/.test(input) || input.length % 4 === 1) {\n    throw new Error(\"Invalid Base64 text.\");\n  }\n  input = input.replace(/=+$/, \"\");\n  while (input.length % 4 !== 0) input += \"=\";\n\n  const bytes = [];\n  for (let index = 0; index < input.length; index += 4) {\n    const a = alphabet.indexOf(input[index]);\n    const b = alphabet.indexOf(input[index + 1]);\n    const c = input[index + 2] === \"=\" ? 0 : alphabet.indexOf(input[index + 2]);\n    const d = input[index + 3] === \"=\" ? 0 : alphabet.indexOf(input[index + 3]);\n    if (a < 0 || b < 0 || c < 0 || d < 0) throw new Error(\"Invalid Base64 text.\");\n    const value = (a << 18) | (b << 12) | (c << 6) | d;\n    bytes.push((value >> 16) & 255);\n    if (input[index + 2] !== \"=\") bytes.push((value >> 8) & 255);\n    if (input[index + 3] !== \"=\") bytes.push(value & 255);\n  }\n\n  let output = \"\";\n  for (let index = 0; index < bytes.length;) {\n    const first = bytes[index++];\n    let codePoint;\n    if (first <= 0x7F) {\n      codePoint = first;\n    } else if (first >= 0xC2 && first <= 0xDF) {\n      if (index >= bytes.length || (bytes[index] & 0xC0) !== 0x80) throw new Error(\"Decoded bytes are not valid UTF-8.\");\n      codePoint = ((first & 0x1F) << 6) | (bytes[index++] & 0x3F);\n    } else if (first >= 0xE0 && first <= 0xEF) {\n      if (index + 1 >= bytes.length || (bytes[index] & 0xC0) !== 0x80 || (bytes[index + 1] & 0xC0) !== 0x80) {\n        throw new Error(\"Decoded bytes are not valid UTF-8.\");\n      }\n      const second = bytes[index++];\n      const third = bytes[index++];\n      if ((first === 0xE0 && second < 0xA0) || (first === 0xED && second >= 0xA0)) {\n        throw new Error(\"Decoded bytes are not valid UTF-8.\");\n      }\n      codePoint = ((first & 0x0F) << 12) | ((second & 0x3F) << 6) | (third & 0x3F);\n    } else if (first >= 0xF0 && first <= 0xF4) {\n      if (index + 2 >= bytes.length || (bytes[index] & 0xC0) !== 0x80\n        || (bytes[index + 1] & 0xC0) !== 0x80 || (bytes[index + 2] & 0xC0) !== 0x80) {\n        throw new Error(\"Decoded bytes are not valid UTF-8.\");\n      }\n      const second = bytes[index++];\n      const third = bytes[index++];\n      const fourth = bytes[index++];\n      if ((first === 0xF0 && second < 0x90) || (first === 0xF4 && second >= 0x90)) {\n        throw new Error(\"Decoded bytes are not valid UTF-8.\");\n      }\n      codePoint = ((first & 7) << 18) | ((second & 0x3F) << 12)\n        | ((third & 0x3F) << 6) | (fourth & 0x3F);\n    } else {\n      throw new Error(\"Decoded bytes are not valid UTF-8.\");\n    }\n    output += String.fromCodePoint(codePoint);\n  }\n  return output;\n}",
+    "type": "javascript"
+  }
+}

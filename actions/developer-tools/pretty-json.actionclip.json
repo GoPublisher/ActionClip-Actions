@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "category": "developerTools",
+    "details": "Validates JSON and formats it with two-space indentation without rewriting large numeric literals or duplicate keys.",
+    "exampleInput": "{\"name\":\"ActionClip\",\"enabled\":true}",
+    "exampleOutput": "{\n  \"name\": \"ActionClip\",\n  \"enabled\": true\n}",
+    "icon": "fluent:braces-24-regular",
+    "id": "510A0C00-0001-4D9A-A001-000000000001",
+    "name": "Pretty JSON",
+    "outputMode": "text_replaceable",
+    "privacyKind": "onDevice",
+    "privacySummary": "Runs locally in ActionClip’s JavaScript sandbox. Selected text does not leave your Mac.",
+    "requirements": "No setup required.",
+    "summary": "Format selected JSON with readable indentation.",
+    "template": "function run(selected_text) {\n  const input = selected_text.trim();\n  try {\n    JSON.parse(input);\n  } catch (error) {\n    throw new Error(\"Invalid JSON: \" + error.message);\n  }\n\n  let output = \"\";\n  let depth = 0;\n  let inString = false;\n  let escaped = false;\n  const indent = () => \"  \".repeat(depth);\n  const nextNonWhitespace = (start) => {\n    for (let index = start; index < input.length; index += 1) {\n      if (!/\\s/.test(input[index])) return input[index];\n    }\n    return \"\";\n  };\n\n  for (let index = 0; index < input.length; index += 1) {\n    const character = input[index];\n    if (inString) {\n      output += character;\n      if (escaped) escaped = false;\n      else if (character === \"\\\\\") escaped = true;\n      else if (character === '\"') inString = false;\n      continue;\n    }\n\n    if (character === '\"') {\n      inString = true;\n      output += character;\n    } else if (character === \"{\" || character === \"[\") {\n      output += character;\n      const closing = character === \"{\" ? \"}\" : \"]\";\n      if (nextNonWhitespace(index + 1) !== closing) {\n        depth += 1;\n        output += \"\\n\" + indent();\n      }\n    } else if (character === \"}\" || character === \"]\") {\n      const opening = character === \"}\" ? \"{\" : \"[\";\n      let previous = output.length - 1;\n      while (previous >= 0 && /\\s/.test(output[previous])) previous -= 1;\n      if (previous >= 0 && output[previous] !== opening) {\n        depth = Math.max(0, depth - 1);\n        output = output.replace(/\\s+$/, \"\") + \"\\n\" + indent();\n      }\n      output += character;\n    } else if (character === \",\") {\n      output += \",\\n\" + indent();\n    } else if (character === \":\") {\n      output += \": \";\n    } else if (!/\\s/.test(character)) {\n      output += character;\n    }\n  }\n  return output;\n}",
+    "type": "javascript"
+  }
+}

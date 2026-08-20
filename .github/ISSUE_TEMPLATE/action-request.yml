@@ -1,0 +1,40 @@
+name: Request an action
+description: Suggest a focused selected-text action for the marketplace.
+title: "Action request: "
+labels: [action-request]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for suggesting an ActionClip action. Do not include private text, credentials, or customer data.
+  - type: input
+    id: outcome
+    attributes:
+      label: Desired outcome
+      description: What should happen to the selected text?
+      placeholder: Turn selected lines into a Markdown table.
+    validations:
+      required: true
+  - type: textarea
+    id: example
+    attributes:
+      label: Example
+      description: Provide non-sensitive example input and expected output.
+    validations:
+      required: true
+  - type: dropdown
+    id: destination
+    attributes:
+      label: Where should it run?
+      options:
+        - On this Mac
+        - In another Mac app
+        - Through an online service
+        - Unsure
+    validations:
+      required: true
+  - type: input
+    id: requirements
+    attributes:
+      label: Required app or service
+      description: Leave blank if none.
+

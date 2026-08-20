@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "category": "textTools",
+    "details": "Finds HTTP, HTTPS, and www-style links, removes surrounding sentence punctuation, preserves balanced URL brackets, and returns one unique URL per line.",
+    "exampleInput": "See https://example.com/docs, then https://actionclip.app.",
+    "exampleOutput": "https://example.com/docs\nhttps://actionclip.app",
+    "icon": "fluent:link-24-regular",
+    "id": "510A0C00-0020-4D9A-A001-000000000020",
+    "name": "Extract URLs",
+    "outputMode": "copy_only",
+    "privacyKind": "onDevice",
+    "privacySummary": "Runs locally in ActionClip’s JavaScript sandbox. Selected text does not leave your Mac.",
+    "requirements": "No setup required.",
+    "summary": "Extract unique web URLs from selected text.",
+    "template": "function run(selected_text) {\n  const matches = selected_text.match(/\\bhttps?:\\/\\/[^\\s<>\"']+|\\bwww\\.[^\\s<>\"']+/gi) || [];\n\n  function trimTrailingPunctuation(value) {\n    let result = value.replace(/[.,;:!?]+$/g, \"\");\n    const pairs = [[\"(\", \")\"], [\"[\", \"]\"], [\"{\", \"}\"]];\n    pairs.forEach(([opening, closing]) => {\n      while (result.endsWith(closing)) {\n        const opens = result.split(opening).length - 1;\n        const closes = result.split(closing).length - 1;\n        if (closes <= opens) break;\n        result = result.slice(0, -1);\n      }\n    });\n    return result;\n  }\n\n  const seen = new Set();\n  const urls = [];\n  matches.map(trimTrailingPunctuation).forEach((url) => {\n    if (!seen.has(url)) {\n      seen.add(url);\n      urls.push(url);\n    }\n  });\n  return urls.length ? urls.join(\"\\n\") : \"No URLs found.\";\n}",
+    "triggerPattern": "*http*",
+    "type": "javascript"
+  }
+}

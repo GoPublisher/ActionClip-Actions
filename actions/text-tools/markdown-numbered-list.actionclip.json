@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "category": "textTools",
+    "details": "Numbers non-empty lines, preserves nesting in four-space levels, and restarts numbering inside each nested level.",
+    "exampleInput": "Draft\n    Review\nPublish",
+    "exampleOutput": "1. Draft\n    1. Review\n2. Publish",
+    "icon": "fluent:text-number-list-24-regular",
+    "id": "510A0C00-0011-4D9A-A001-000000000011",
+    "name": "Markdown Numbered List",
+    "outputMode": "text_replaceable",
+    "privacyKind": "onDevice",
+    "privacySummary": "Runs locally in ActionClip’s JavaScript sandbox. Selected text does not leave your Mac.",
+    "requirements": "No setup required.",
+    "section": "markdown",
+    "summary": "Turn selected lines into a numbered Markdown list.",
+    "template": "function run(selected_text) {\n  const counters = [];\n  let previousLevel = 0;\n  const output = [];\n\n  selected_text.split(/\\r\\n?|\\n/).forEach((line) => {\n    if (/^[ \\t]*$/.test(line)) return;\n\n    const originalIndent = (line.match(/^[ \\t]*/) || [\"\"])[0];\n    const expandedIndent = originalIndent.replace(/\\t/g, \"    \");\n    let level = Math.floor(expandedIndent.length / 4);\n    level = Math.min(level, previousLevel + 1);\n\n    const content = line\n      .slice(originalIndent.length)\n      .replace(/^(?:(?:[-+*]|\\d+[.)])\\s+)?(?:\\[[ xX]\\]\\s+)?/, \"\")\n      .trim();\n\n    counters.length = level + 1;\n    counters[level] = (counters[level] || 0) + 1;\n    output.push(\"    \".repeat(level) + counters[level] + \". \" + content);\n    previousLevel = level;\n  });\n\n  return output.join(\"\\n\");\n}",
+    "type": "javascript"
+  }
+}

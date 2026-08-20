@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "category": "appIntegrations",
+    "details": "Invokes DEVONthink's published “DEVONthink Pro: Lookup...” macOS Service with the selected text.",
+    "exampleInput": "local-first architecture",
+    "exampleOutput": "DEVONthink searches its open databases for the phrase.",
+    "icon": "fluent:document-search-24-regular",
+    "id": "510A0C00-0071-4D9A-A001-000000000071",
+    "integration": {
+      "appIcon": "devonthink",
+      "icon": "fluent:archive-24-regular",
+      "id": "devonthink",
+      "name": "DEVONthink",
+      "summary": "Capture selected text and search open DEVONthink databases."
+    },
+    "name": "DEVONthink — Search",
+    "outputMode": "opens_externally",
+    "privacyKind": "externalApp",
+    "privacySummary": "ActionClip passes the selected text locally to DEVONthink through its macOS Service. DEVONthink controls any later sync.",
+    "requirements": "DEVONthink must be installed with an open database and its Lookup Service enabled.",
+    "summary": "Search open DEVONthink databases for the selection.",
+    "template": "devonthink_search",
+    "type": "built_in"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "category": "textTools",
+    "details": "Finds conventional email addresses, removes case-insensitive duplicates, and returns one address per line without sending the selection anywhere.",
+    "exampleInput": "Email Maya@example.com or support@actionclip.app; maya@example.com is the same contact.",
+    "exampleOutput": "Maya@example.com\nsupport@actionclip.app",
+    "icon": "fluent:mail-24-regular",
+    "id": "510A0C00-0021-4D9A-A001-000000000021",
+    "name": "Extract Email Addresses",
+    "outputMode": "copy_only",
+    "privacyKind": "onDevice",
+    "privacySummary": "Runs locally in ActionClip’s JavaScript sandbox. Selected text does not leave your Mac.",
+    "requirements": "No setup required.",
+    "summary": "Extract unique email addresses from selected text.",
+    "template": "function run(selected_text) {\n  const matches = selected_text.match(/\\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}\\b/gi) || [];\n  const seen = new Set();\n  const emails = [];\n  matches.forEach((email) => {\n    const key = email.toLowerCase();\n    if (!seen.has(key)) {\n      seen.add(key);\n      emails.push(email);\n    }\n  });\n  return emails.length ? emails.join(\"\\n\") : \"No email addresses found.\";\n}",
+    "triggerPattern": "*@*.*",
+    "type": "javascript"
+  }
+}

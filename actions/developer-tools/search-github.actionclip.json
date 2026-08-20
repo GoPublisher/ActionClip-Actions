@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "category": "developerTools",
+    "details": "Opens GitHub code search in your default browser with the exact selection safely encoded as the query.",
+    "exampleInput": "NavigationSplitView",
+    "exampleOutput": "GitHub opens with code results for “NavigationSplitView”.",
+    "icon": "fluent:code-24-regular",
+    "id": "510A0C00-0004-4D9A-A001-000000000004",
+    "name": "Search GitHub",
+    "outputMode": "opens_externally",
+    "privacyKind": "online",
+    "privacySummary": "The selected text is sent to github.com as part of the URL when you run the action.",
+    "requirements": "Online Actions must be enabled. GitHub may require sign-in for code results.",
+    "summary": "Search GitHub code for the selected text.",
+    "template": "https://github.com/search?q={{url_encoded__selected_text}}&type=code",
+    "type": "url"
+  }
+}

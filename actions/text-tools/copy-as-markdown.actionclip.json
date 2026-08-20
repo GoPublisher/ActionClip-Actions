@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "category": "textTools",
+    "details": "Captures HTML, RTF, or attributed text from the source app without leaving the clipboard changed during capture, converts common headings, emphasis, links, lists, quotes, code, and images locally, then copies the Markdown result.",
+    "exampleInput": "A rich-text heading, bold phrase, link, and list",
+    "exampleOutput": "## Heading\n\nA **bold phrase** with a [link](https://example.com).\n\n- First\n- Second",
+    "icon": "fluent:clipboard-markdown-24-regular",
+    "id": "510A0C00-0062-4D9A-A001-000000000062",
+    "name": "Copy as Markdown",
+    "outputMode": "copy_only",
+    "privacyKind": "onDevice",
+    "privacySummary": "ActionClip captures and converts the selected rich text locally, restores the previous clipboard, then copies only the Markdown result. The selection does not leave your Mac.",
+    "requirements": "The source app must expose its selected rich text through Accessibility or Copy. Plain-text selections are copied unchanged.",
+    "section": "markdown",
+    "summary": "Copy the selected rich text as Markdown.",
+    "template": "copy_as_markdown",
+    "type": "built_in"
+  }
+}

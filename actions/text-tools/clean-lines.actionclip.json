@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "category": "textTools",
+    "details": "Removes blank lines and trims surrounding whitespace while preserving the order of the remaining lines.",
+    "exampleInput": "  Prepare launch checklist  \r\n\r\nConfirm pricing slide",
+    "exampleOutput": "Prepare launch checklist\nConfirm pricing slide",
+    "icon": "fluent:broom-24-regular",
+    "id": "510A0C00-0002-4D9A-A001-000000000002",
+    "name": "Clean Lines",
+    "outputMode": "text_replaceable",
+    "privacyKind": "onDevice",
+    "privacySummary": "Runs locally in ActionClip’s JavaScript sandbox. Selected text does not leave your Mac.",
+    "requirements": "No setup required.",
+    "summary": "Trim lines and remove empty ones from selected text.",
+    "template": "function run(selected_text) {\n  return selected_text\n    .split(/\\r\\n?|\\n/)\n    .map((line) => line.trim())\n    .filter((line) => line.length > 0)\n    .join(\"\\n\");\n}",
+    "type": "javascript"
+  }
+}

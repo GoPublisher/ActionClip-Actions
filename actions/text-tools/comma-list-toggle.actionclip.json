@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "category": "textTools",
+    "details": "Joins multiple non-empty lines with commas or splits one comma-separated line while respecting commas inside matching quotes.",
+    "exampleInput": "Apple, Banana, \"Pear, green\"",
+    "exampleOutput": "Apple\nBanana\n\"Pear, green\"",
+    "icon": "fluent:comma-24-regular",
+    "id": "510A0C00-0014-4D9A-A001-000000000014",
+    "name": "Comma List Toggle",
+    "outputMode": "text_replaceable",
+    "privacyKind": "onDevice",
+    "privacySummary": "Runs locally in ActionClip’s JavaScript sandbox. Selected text does not leave your Mac.",
+    "requirements": "No setup required.",
+    "summary": "Switch between comma-separated values and separate lines.",
+    "template": "function run(selected_text) {\n  const lines = selected_text\n    .split(/\\r\\n?|\\n/)\n    .map((line) => line.trim())\n    .filter((line) => line.length > 0);\n\n  if (lines.length > 1) return lines.join(\", \");\n  if (lines.length === 0) return \"\";\n\n  const values = [];\n  let current = \"\";\n  let quote = null;\n  for (let index = 0; index < lines[0].length; index += 1) {\n    const character = lines[0][index];\n    if ((character === '\"' || character === \"'\") && quote === null) {\n      quote = character;\n      current += character;\n    } else if (character === quote) {\n      if (lines[0][index + 1] === quote) {\n        current += character + character;\n        index += 1;\n      } else {\n        quote = null;\n        current += character;\n      }\n    } else if (character === \",\" && quote === null) {\n      if (current.trim()) values.push(current.trim());\n      current = \"\";\n    } else {\n      current += character;\n    }\n  }\n  if (current.trim()) values.push(current.trim());\n  return values.length > 1 ? values.join(\"\\n\") : lines[0];\n}",
+    "type": "javascript"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "category": "textTools",
+    "details": "Lowercases text, strips Latin diacritics, converts separators to hyphens, and preserves readable words for dot, plus, ampersand, and at signs.",
+    "exampleInput": "Café + APIs & SDKs",
+    "exampleOutput": "cafe-plus-apis-and-sdks",
+    "icon": "fluent:link-24-regular",
+    "id": "510A0C00-0007-4D9A-A001-000000000007",
+    "name": "Slugify",
+    "outputMode": "text_replaceable",
+    "privacyKind": "onDevice",
+    "privacySummary": "Runs locally in ActionClip’s JavaScript sandbox. Selected text does not leave your Mac.",
+    "requirements": "No setup required.",
+    "summary": "Turn selected text into a readable URL slug.",
+    "template": "function run(selected_text) {\n  return selected_text\n    .normalize(\"NFKD\")\n    .replace(/[\\u0300-\\u036f]/g, \"\")\n    .toLowerCase()\n    .replace(/\\./g, \"-dot-\")\n    .replace(/\\+/g, \"-plus-\")\n    .replace(/&/g, \"-and-\")\n    .replace(/@/g, \"-at-\")\n    .replace(/_/g, \"-\")\n    .replace(/[^a-z0-9\\s-]+/g, \"\")\n    .replace(/[\\s-]+/g, \"-\")\n    .replace(/^-+|-+$/g, \"\");\n}",
+    "type": "javascript"
+  }
+}

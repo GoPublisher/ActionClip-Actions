@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="icon-surface" x1="15.085%" y1="12.996%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#D5D7D7"/>
+    </linearGradient>
+    <path id="icon-shape" d="M167.939 55H344.061C385.071 55 399.942 59.27 414.935 67.288C429.927 75.306 441.694 87.073 449.712 102.065C457.73 117.058 462 131.929 462 172.939V349.061C462 390.071 457.73 404.942 449.712 419.935C441.694 434.927 429.927 446.694 414.935 454.712C399.942 462.73 385.071 467 344.061 467H167.939C126.929 467 112.058 462.73 97.065 454.712C82.073 446.694 70.306 434.927 62.288 419.935C54.27 404.942 50 390.071 50 349.061V172.939C50 131.929 54.27 117.058 62.288 102.065C70.306 87.073 82.073 75.306 97.065 67.288C112.058 59.27 126.929 55 167.939 55Z"/>
+    <filter id="surface-shadow" x="-2.4%" y="-1.2%" width="104.9%" height="104.9%" filterUnits="objectBoundingBox">
+      <feOffset dy="5" in="SourceAlpha" result="offset"/>
+      <feGaussianBlur stdDeviation="2.5" in="offset" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .402 0"/>
+    </filter>
+    <filter id="surface-inner" x="-1.7%" y="-0.5%" width="103.4%" height="103.4%" filterUnits="objectBoundingBox">
+      <feGaussianBlur stdDeviation="1.5" in="SourceAlpha" result="blur"/>
+      <feOffset dy="-1" in="blur" result="offset"/>
+      <feComposite in="offset" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="inner"/>
+      <feColorMatrix in="inner" type="matrix" values="0 0 0 0 .78  0 0 0 0 .78  0 0 0 0 .78  0 0 0 1 0"/>
+    </filter>
+    <path id="widget-pill" d="M30 0H190C206.569 0 220 13.431 220 30C220 46.569 206.569 60 190 60H30C13.431 60 0 46.569 0 30C0 13.431 13.431 0 30 0Z"/>
+    <filter id="pill-inner" x="-0.9%" y="-3.3%" width="101.8%" height="106.7%" filterUnits="objectBoundingBox">
+      <feGaussianBlur stdDeviation="1.5" in="SourceAlpha" result="blur"/>
+      <feOffset dy="1" in="blur" result="offset"/>
+      <feComposite in="offset" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="inner"/>
+      <feColorMatrix in="inner" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .304 0"/>
+    </filter>
+  </defs>
+
+  <!-- Keep an opaque source for SVG filters. A fill="none" source has no
+       SourceAlpha in standards-compliant renderers, which silently drops the
+       Paper shadow during PNG export. The filter output remains shadow-only. -->
+  <use xlink:href="#icon-shape" fill="#000000" filter="url(#surface-shadow)"/>
+  <use xlink:href="#icon-shape" fill="url(#icon-surface)"/>
+  <use xlink:href="#icon-shape" fill="#000000" filter="url(#surface-inner)"/>
+
+  <use xlink:href="#widget-pill" transform="translate(173.5 117) scale(.75)" fill="#1E1E1E"/>
+  <use xlink:href="#widget-pill" transform="translate(173.5 117) scale(.75)" fill="#000000" filter="url(#pill-inner)"/>
+  <rect x="195" y="134" width="121" height="11" rx="5.5" fill="#8959F6"/>
+
+  <path d="M174-10Q134-10 99 10.5Q64 31 42 70Q20 109 20 164Q20 250 80.5 294Q141 338 237 338H280V393Q280 422 260 432.5Q240 443 209 443Q171 443 136 436Q101 429 66 416V556Q111 566 159.5 574.5Q208 583 257 583Q312 583 358 569.5Q404 556 432 521Q460 486 460 421V0H304L292 43Q267 16 236 3Q205-10 174-10ZM244 122Q264 122 280 140V239H267Q237 239 216 224.5Q195 210 195 181Q195 153 210 137.5Q225 122 244 122Z" transform="translate(186.44 382.074) scale(.278 -.278)" fill="#8E5CFF"/>
+</svg>

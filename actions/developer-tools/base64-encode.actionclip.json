@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "category": "developerTools",
+    "details": "Converts Unicode to UTF-8 bytes and emits standard padded Base64 without relying on browser or Node.js APIs.",
+    "exampleInput": "ActionClip",
+    "exampleOutput": "QWN0aW9uQ2xpcA==",
+    "icon": "fluent:key-24-regular",
+    "id": "510A0C00-0028-4D9A-A001-000000000028",
+    "name": "Base64 Encode",
+    "outputMode": "text_replaceable",
+    "privacyKind": "onDevice",
+    "privacySummary": "Runs locally in ActionClip’s JavaScript sandbox. Selected text does not leave your Mac.",
+    "requirements": "No setup required.",
+    "summary": "Encode selected Unicode text as Base64 UTF-8.",
+    "template": "function run(selected_text) {\n  const alphabet = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\";\n  const bytes = [];\n\n  for (let index = 0; index < selected_text.length; index += 1) {\n    let codePoint = selected_text.charCodeAt(index);\n    if (codePoint >= 0xD800 && codePoint <= 0xDBFF) {\n      const low = selected_text.charCodeAt(index + 1);\n      if (low >= 0xDC00 && low <= 0xDFFF) {\n        codePoint = 0x10000 + ((codePoint - 0xD800) << 10) + (low - 0xDC00);\n        index += 1;\n      } else {\n        codePoint = 0xFFFD;\n      }\n    } else if (codePoint >= 0xDC00 && codePoint <= 0xDFFF) {\n      codePoint = 0xFFFD;\n    }\n\n    if (codePoint <= 0x7F) {\n      bytes.push(codePoint);\n    } else if (codePoint <= 0x7FF) {\n      bytes.push(0xC0 | (codePoint >> 6), 0x80 | (codePoint & 0x3F));\n    } else if (codePoint <= 0xFFFF) {\n      bytes.push(0xE0 | (codePoint >> 12), 0x80 | ((codePoint >> 6) & 0x3F), 0x80 | (codePoint & 0x3F));\n    } else {\n      bytes.push(0xF0 | (codePoint >> 18), 0x80 | ((codePoint >> 12) & 0x3F),\n        0x80 | ((codePoint >> 6) & 0x3F), 0x80 | (codePoint & 0x3F));\n    }\n  }\n\n  let output = \"\";\n  for (let index = 0; index < bytes.length; index += 3) {\n    const first = bytes[index];\n    const second = index + 1 < bytes.length ? bytes[index + 1] : 0;\n    const third = index + 2 < bytes.length ? bytes[index + 2] : 0;\n    const value = (first << 16) | (second << 8) | third;\n    output += alphabet[(value >> 18) & 63];\n    output += alphabet[(value >> 12) & 63];\n    output += index + 1 < bytes.length ? alphabet[(value >> 6) & 63] : \"=\";\n    output += index + 2 < bytes.length ? alphabet[value & 63] : \"=\";\n  }\n  return output;\n}",
+    "type": "javascript"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "category": "textTools",
+    "details": "Adds a hyphen marker to each non-empty line while preserving indentation and replacing existing list or checkbox markers.",
+    "exampleInput": "Design\n2. Build\n- [x] Ship",
+    "exampleOutput": "- Design\n- Build\n- Ship",
+    "icon": "fluent:text-bullet-list-24-regular",
+    "id": "510A0C00-0010-4D9A-A001-000000000010",
+    "name": "Markdown Bullet List",
+    "outputMode": "text_replaceable",
+    "privacyKind": "onDevice",
+    "privacySummary": "Runs locally in ActionClip’s JavaScript sandbox. Selected text does not leave your Mac.",
+    "requirements": "No setup required.",
+    "section": "markdown",
+    "summary": "Turn selected lines into a Markdown bullet list.",
+    "template": "function run(selected_text) {\n  return selected_text\n    .split(/\\r\\n?|\\n/)\n    .filter((line) => !/^[ \\t]*$/.test(line))\n    .map((line) => {\n      const indent = (line.match(/^[ \\t]*/) || [\"\"])[0];\n      const content = line\n        .slice(indent.length)\n        .replace(/^(?:(?:[-+*]|\\d+[.)])\\s+)?(?:\\[[ xX]\\]\\s+)?/, \"\")\n        .trim();\n      return indent + \"- \" + content;\n    })\n    .join(\"\\n\");\n}",
+    "type": "javascript"
+  }
+}

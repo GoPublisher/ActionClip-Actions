@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "appIcon": "refine",
+    "category": "appIntegrations",
+    "details": "Uses ActionClip's built-in Refine integration to open the selection in Refine's floating editor through Refine's app deep link.",
+    "exampleInput": "A rough draft that needs focused editing.",
+    "exampleOutput": "Refine opens its floating editor with the selected text.",
+    "icon": "fluent:text-grammar-wand-24-regular",
+    "id": "00000000-0000-0000-0000-000000000037",
+    "name": "Refine",
+    "outputMode": "opens_externally",
+    "privacyKind": "externalApp",
+    "privacySummary": "ActionClip passes the selected text to the Refine app on this Mac through its app deep link. ActionClip does not send the selection to a remote service.",
+    "requirements": "Refine must be installed. Download it from refine.sh.",
+    "summary": "Open selected text in Refine's floating editor.",
+    "template": "refine",
+    "type": "built_in"
+  }
+}

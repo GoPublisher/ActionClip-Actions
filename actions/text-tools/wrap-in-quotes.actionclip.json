@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "category": "textTools",
+    "details": "Adds straight double quotes while keeping surrounding whitespace outside them. Running it again removes one matching pair.",
+    "exampleInput": "  ready  ",
+    "exampleOutput": "  \"ready\"  ",
+    "icon": "fluent:comment-quote-24-regular",
+    "id": "510A0C00-0017-4D9A-A001-000000000017",
+    "name": "Wrap in Quotes",
+    "outputMode": "text_replaceable",
+    "privacyKind": "onDevice",
+    "privacySummary": "Runs locally in ActionClip’s JavaScript sandbox. Selected text does not leave your Mac.",
+    "requirements": "No setup required.",
+    "summary": "Toggle straight double quotes around selected text.",
+    "template": "function run(selected_text) {\n  const match = selected_text.match(/^(\\s*)([\\s\\S]*?)(\\s*)$/);\n  const leading = match[1];\n  const content = match[2];\n  const trailing = match[3];\n  if (content.length >= 2 && content.startsWith('\"') && content.endsWith('\"')) {\n    return leading + content.slice(1, -1) + trailing;\n  }\n  return leading + '\"' + content + '\"' + trailing;\n}",
+    "type": "javascript"
+  }
+}

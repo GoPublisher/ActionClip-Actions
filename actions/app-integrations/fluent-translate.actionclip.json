@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "category": "appIntegrations",
+    "details": "Reproduces Fluent's generated PopClip action by sending the selected text and Fluent action identifier translatorGeneric through the FLNT/ACTN Apple event.",
+    "exampleInput": "Could we move the meeting to Friday?",
+    "exampleOutput": "Fluent runs its Translate action on the selected text.",
+    "icon": "fluent:translate-24-regular",
+    "id": "510A0C00-0054-4D9A-A001-000000000054",
+    "integration": {
+      "appIcon": "fluent-app",
+      "icon": "fluent:apps-24-regular",
+      "id": "fluent",
+      "name": "Fluent",
+      "summary": "AI writing, translation, and editing actions powered by Fluent."
+    },
+    "name": "Fluent — Translate",
+    "outputMode": "opens_externally",
+    "privacyKind": "externalApp",
+    "privacySummary": "ActionClip passes the selected text to Fluent on this Mac. Fluent then uses the local or cloud model configured in Fluent.",
+    "requirements": "Fluent 1.7.1 or later must be installed and the corresponding built-in Fluent action must be available. macOS may ask you to allow ActionClip to control Fluent.",
+    "summary": "Translate the selected text using Fluent.",
+    "template": "tell application id \"net.epicbits.FluentStandalone\"\n    «event FLNTACTN» {\"translatorGeneric\", \"{{selected_text}}\"}\nend tell",
+    "type": "apple_script"
+  }
+}

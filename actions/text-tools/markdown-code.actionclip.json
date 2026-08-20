@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "category": "textTools",
+    "details": "Uses inline backticks for one line and a safe-length fenced code block for multiple lines. Running it on matching code markup removes the markup.",
+    "exampleInput": "total += item",
+    "exampleOutput": "`total += item`",
+    "icon": "fluent:code-block-24-regular",
+    "id": "510A0C00-0013-4D9A-A001-000000000013",
+    "name": "Markdown Code",
+    "outputMode": "text_replaceable",
+    "privacyKind": "onDevice",
+    "privacySummary": "Runs locally in ActionClip’s JavaScript sandbox. Selected text does not leave your Mac.",
+    "requirements": "No setup required.",
+    "section": "markdown",
+    "summary": "Toggle Markdown code markup around selected text.",
+    "template": "function run(selected_text) {\n  const block = selected_text.match(/^(`{3,})[^\\n]*\\n([\\s\\S]*?)\\n?\\1[ \\t]*$/);\n  if (block) return block[2];\n\n  if (!/[\\r\\n]/.test(selected_text)) {\n    const inline = selected_text.match(/^(\\s*)(`+)([\\s\\S]*?)\\2(\\s*)$/);\n    if (inline) return inline[1] + inline[3] + inline[4];\n\n    const leading = (selected_text.match(/^\\s*/) || [\"\"])[0];\n    const trailing = (selected_text.match(/\\s*$/) || [\"\"])[0];\n    const content = selected_text.slice(leading.length, selected_text.length - trailing.length);\n    const runs = content.match(/`+/g) || [];\n    const fenceLength = Math.max(1, ...runs.map((run) => run.length + 1));\n    const fence = \"`\".repeat(fenceLength);\n    const needsPadding = content.startsWith(\"`\") || content.endsWith(\"`\");\n    return leading + fence + (needsPadding ? \" \" : \"\") + content\n      + (needsPadding ? \" \" : \"\") + fence + trailing;\n  }\n\n  const normalized = selected_text.replace(/\\r\\n?|\\n/g, \"\\n\");\n  const runs = normalized.match(/`+/g) || [];\n  const fenceLength = Math.max(3, ...runs.map((run) => run.length + 1));\n  const fence = \"`\".repeat(fenceLength);\n  return fence + \"\\n\" + normalized + (normalized.endsWith(\"\\n\") ? \"\" : \"\\n\") + fence;\n}",
+    "type": "javascript"
+  }
+}

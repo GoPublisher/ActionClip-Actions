@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "category": "appIntegrations",
+    "details": "Reproduces Fluent's generic PopClip action. ActionClip sends the selected text through Fluent's FLNT/SPNL Apple event. Fluent keeps that selection as action context rather than placing it in the prompt field; enable Show text selection as attachment in Fluent's Smart Panel settings if you want the selection shown in the panel.",
+    "exampleInput": "Draft a concise reply confirming Friday's meeting.",
+    "exampleOutput": "Fluent opens its Smart Panel with the selection available to its actions.",
+    "icon": "fluent:apps-24-regular",
+    "id": "510A0C00-0051-4D9A-A001-000000000051",
+    "integration": {
+      "appIcon": "fluent-app",
+      "icon": "fluent:apps-24-regular",
+      "id": "fluent",
+      "name": "Fluent",
+      "summary": "AI writing, translation, and editing actions powered by Fluent."
+    },
+    "name": "Fluent",
+    "outputMode": "opens_externally",
+    "privacyKind": "externalApp",
+    "privacySummary": "ActionClip passes the selected text to Fluent on this Mac. Fluent then uses the local or cloud model configured in Fluent.",
+    "requirements": "Fluent 1.7.1 or later must be installed. macOS may ask you to allow ActionClip to control Fluent.",
+    "summary": "Open Fluent's Smart Panel with the selected text as context.",
+    "template": "tell application id \"net.epicbits.FluentStandalone\"\n    «event FLNTSPNL» \"{{selected_text}}\"\nend tell",
+    "type": "apple_script"
+  }
+}

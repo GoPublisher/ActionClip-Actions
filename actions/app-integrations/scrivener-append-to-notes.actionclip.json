@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "category": "appIntegrations",
+    "details": "Invokes Scrivener's published “Scrivener/Scrivener: Append to Notes” macOS Service with the selection.",
+    "exampleInput": "A research note for the current document.",
+    "exampleOutput": "Scrivener appends the note to the current document notes.",
+    "icon": "fluent:note-add-24-regular",
+    "id": "510A0C00-0083-4D9A-A001-000000000083",
+    "integration": {
+      "appIcon": "scrivener",
+      "icon": "fluent:document-text-24-regular",
+      "id": "scrivener",
+      "name": "Scrivener",
+      "summary": "Create clippings or append selected text to a Scrivener project."
+    },
+    "name": "Scrivener — Append to Notes",
+    "outputMode": "opens_externally",
+    "privacyKind": "externalApp",
+    "privacySummary": "ActionClip passes the selected text locally to Scrivener through its macOS Service. Scrivener controls any later sync.",
+    "requirements": "Scrivener 2 or 3 must be installed, a project must be open, and its Append to Notes Service must be enabled.",
+    "summary": "Append the selection to the current Scrivener document notes.",
+    "template": "scrivener_append_notes",
+    "type": "built_in"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "category": "productivity",
+    "details": "Removes UTM parameters and well-known click identifiers while preserving unrelated query parameters, their encoding, and the URL fragment.",
+    "exampleInput": "https://example.com/article?id=42&utm_source=newsletter&fbclid=abc#notes",
+    "exampleOutput": "https://example.com/article?id=42#notes",
+    "icon": "fluent:link-dismiss-24-regular",
+    "id": "510A0C00-0043-4D9A-A001-000000000043",
+    "name": "Clean Tracking Link",
+    "outputMode": "text_replaceable",
+    "privacyKind": "onDevice",
+    "privacySummary": "Runs locally in ActionClip’s JavaScript sandbox. Selected text does not leave your Mac.",
+    "requirements": "No setup required.",
+    "summary": "Remove common marketing trackers from a selected URL.",
+    "template": "function run(selected_text) {\n  const input = selected_text.trim();\n  const match = input.match(/^(https?):\\/\\/([^/?#\\s]+)([^?#]*)(\\?[^#]*)?(#.*)?$/i);\n  if (!match) throw new Error(\"Select one complete HTTP or HTTPS URL.\");\n\n  const blocked = new Set([\n    \"fbclid\", \"gclid\", \"dclid\", \"msclkid\", \"mc_cid\", \"mc_eid\", \"igshid\",\n    \"vero_id\", \"_hsenc\", \"_hsmi\", \"mkt_tok\", \"oly_anon_id\", \"oly_enc_id\"\n  ]);\n  const query = (match[4] || \"\").replace(/^\\?/, \"\");\n  const kept = query ? query.split(\"&\").filter((entry) => {\n    if (!entry) return false;\n    const rawKey = entry.split(\"=\", 1)[0].replace(/\\+/g, \" \");\n    let key;\n    try { key = decodeURIComponent(rawKey).toLowerCase(); }\n    catch (_) { key = rawKey.toLowerCase(); }\n    return !key.startsWith(\"utm_\") && !blocked.has(key);\n  }) : [];\n\n  return match[1].toLowerCase() + \"://\" + match[2] + (match[3] || \"\")\n    + (kept.length ? \"?\" + kept.join(\"&\") : \"\") + (match[5] || \"\");\n}",
+    "triggerPattern": "http*",
+    "type": "javascript"
+  }
+}

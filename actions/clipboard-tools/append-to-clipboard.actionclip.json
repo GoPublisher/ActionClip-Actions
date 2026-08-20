@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "category": "clipboardTools",
+    "details": "Appends the trimmed selection after the existing clipboard text, separated by a new line. Hold Shift while clicking to prepend instead, or Option to use a space as the separator. If either side is empty, ActionClip avoids adding an unnecessary separator.",
+    "exampleInput": "Second research note",
+    "exampleOutput": "Clipboard becomes:\nFirst research note\nSecond research note",
+    "icon": "fluent:clipboard-arrow-right-24-regular",
+    "id": "510A0C00-0052-4D9A-A001-000000000052",
+    "name": "Append to Clipboard",
+    "outputMode": "copy_only",
+    "privacyKind": "onDevice",
+    "privacySummary": "ActionClip reads and updates the macOS clipboard locally. The selection and clipboard contents never leave your Mac.",
+    "requirements": "The selection must contain text. Hold Shift to prepend or Option to separate with a space.",
+    "summary": "Combine selected text with the existing clipboard text.",
+    "template": "append_to_clipboard",
+    "type": "built_in"
+  }
+}

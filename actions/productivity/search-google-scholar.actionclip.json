@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "category": "productivity",
+    "details": "Opens Google Scholar with the selection encoded as a literature search query.",
+    "exampleInput": "local first software collaboration",
+    "exampleOutput": "Google Scholar opens with matching papers and citations.",
+    "icon": "fluent:hat-graduation-24-regular",
+    "id": "510A0C00-0047-4D9A-A001-000000000047",
+    "name": "Search Google Scholar",
+    "outputMode": "opens_externally",
+    "privacyKind": "online",
+    "privacySummary": "The selected text is sent to scholar.google.com as part of the URL when you run the action.",
+    "requirements": "Online Actions must be enabled.",
+    "summary": "Search scholarly literature for the selected text.",
+    "template": "https://scholar.google.com/scholar?q={{url_encoded__selected_text}}",
+    "type": "url"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "category": "productivity",
+    "details": "Shows the selection locally in a dedicated large-type presentation. It does not alter the source selection or clipboard.",
+    "exampleInput": "Gate B24 — boarding at 18:45",
+    "exampleOutput": "The selection appears in large centered type.",
+    "icon": "fluent:text-font-size-24-regular",
+    "id": "510A0C00-0067-4D9A-A001-000000000067",
+    "name": "Large Type",
+    "outputMode": "copy_only",
+    "privacyKind": "onDevice",
+    "privacySummary": "The selected text is displayed locally by ActionClip and does not leave your Mac.",
+    "requirements": "No setup required.",
+    "summary": "Display the selected text in a large, readable result card.",
+    "template": "large_type",
+    "type": "built_in"
+  }
+}

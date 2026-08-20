@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "category": "appIntegrations",
+    "details": "Uses an allowlisted bundle-ID-to-shortcut table for Preview, Skim, Evernote, PDF Expert, Obsidian, GoodLinks, Scrivener, Pages, Logseq, DEVONthink, Alternote, iA Writer, iA Presenter, PDFpen, and Apple Notes. Unsupported apps fail without sending a shortcut.",
+    "exampleInput": "An important passage in Preview",
+    "exampleOutput": "ActionClip sends Preview's Control-Command-H highlight shortcut.",
+    "icon": "fluent:highlight-24-regular",
+    "id": "510A0C00-0069-4D9A-A001-000000000069",
+    "name": "Highlight",
+    "outputMode": "opens_externally",
+    "privacyKind": "externalApp",
+    "privacySummary": "ActionClip sends a reviewed keyboard shortcut to the active supported app. The selected text does not leave your Mac.",
+    "requirements": "The selection must remain active in one of the supported apps. Accessibility permission is required to target the source app.",
+    "summary": "Apply the active app's known highlight command.",
+    "template": "highlight_selection",
+    "type": "built_in"
+  }
+}

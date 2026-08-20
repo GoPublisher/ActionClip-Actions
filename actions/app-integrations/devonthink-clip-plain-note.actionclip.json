@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "category": "appIntegrations",
+    "details": "Invokes DEVONthink's published “DEVONthink Pro: Take Plain Note” macOS Service with the selected text.",
+    "exampleInput": "Research note to save in DEVONthink.",
+    "exampleOutput": "DEVONthink creates a plain note in its inbox.",
+    "icon": "fluent:document-add-24-regular",
+    "id": "510A0C00-0070-4D9A-A001-000000000070",
+    "integration": {
+      "appIcon": "devonthink",
+      "icon": "fluent:archive-24-regular",
+      "id": "devonthink",
+      "name": "DEVONthink",
+      "summary": "Capture selected text and search open DEVONthink databases."
+    },
+    "name": "DEVONthink — Clip Plain Note",
+    "outputMode": "opens_externally",
+    "privacyKind": "externalApp",
+    "privacySummary": "ActionClip passes the selected text locally to DEVONthink through its macOS Service. DEVONthink controls any later sync.",
+    "requirements": "DEVONthink must be installed and its Take Plain Note Service must be enabled.",
+    "summary": "Create a plain note in DEVONthink from the selection.",
+    "template": "devonthink_clip_plain_note",
+    "type": "built_in"
+  }
+}

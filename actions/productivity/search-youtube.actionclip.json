@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "documentType": "actionclip.marketplace.action-definition",
+  "catalogRevision": "2026-08-21.1",
+  "publishedAt": "2026-08-20T18:50:00Z",
+  "action": {
+    "category": "productivity",
+    "details": "Opens YouTube search in your default browser with the selection safely encoded as the video query.",
+    "exampleInput": "SwiftUI macOS menu bar tutorial",
+    "exampleOutput": "YouTube opens with matching video results.",
+    "icon": "fluent:video-clip-24-regular",
+    "id": "510A0C00-0044-4D9A-A001-000000000044",
+    "name": "Search YouTube",
+    "outputMode": "opens_externally",
+    "privacyKind": "online",
+    "privacySummary": "The selected text is sent to youtube.com as part of the URL when you run the action.",
+    "requirements": "Online Actions must be enabled.",
+    "summary": "Search YouTube for the selected text.",
+    "template": "https://www.youtube.com/results?search_query={{url_encoded__selected_text}}",
+    "type": "url"
+  }
+}
