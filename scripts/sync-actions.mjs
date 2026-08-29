@@ -15,6 +15,12 @@ const categories = {
   appIntegrations: { directory: "app-integrations", title: "App integrations" }
 };
 
+const privacyLabels = {
+  onDevice: "On your Mac",
+  online: "Uses an online service",
+  externalApp: "Uses another Mac app"
+};
+
 const catalog = JSON.parse(await fs.readFile(catalogPath, "utf8"));
 
 function slugify(value) {
@@ -45,11 +51,13 @@ function renderAction(action) {
 
 function renderIndex() {
   const lines = [
-    "# Action directory",
+    "# ActionClip action directory",
     "",
-    `Catalog revision \`${catalog.revision}\` · ${catalog.actions.length} actions`,
+    `Browse ${catalog.actions.length} ready-made actions for selected text on your Mac.`,
     "",
-    "This file is generated from `catalog/catalog-v1.json`. Run `npm run sync` after changing the catalog.",
+    "Looking for a PopClip alternative, quick Mac text actions, or a faster way to handle small tasks without switching apps? Choose a category below, open any action to see what it does, then add it from the [ActionClip Marketplace](https://actionclip.app/marketplace).",
+    "",
+    "[Download ActionClip](https://actionclip.app/download) · [Marketplace](https://actionclip.app/marketplace) · [Back to overview](README.md)",
     ""
   ];
 
@@ -57,12 +65,13 @@ function renderIndex() {
     const actions = catalog.actions
       .filter((action) => action.category === key)
       .sort((a, b) => a.name.localeCompare(b.name));
-    lines.push(`## ${category.title}`, "", "| Action | What it does | Runtime | Privacy |", "| --- | --- | --- | --- |");
+    lines.push(`## ${category.title}`, "", "| Action | What it does | Where it works |", "| --- | --- | --- |");
     for (const action of actions) {
       const relative = actionFile(action).replaceAll(path.sep, "/");
       const name = action.name.replaceAll("|", "\\|");
       const summary = action.summary.replaceAll("|", "\\|");
-      lines.push(`| [${name}](${relative}) | ${summary} | \`${action.type}\` | \`${action.privacyKind}\` |`);
+      const privacy = privacyLabels[action.privacyKind] ?? "See action details";
+      lines.push(`| [${name}](${relative}) | ${summary} | ${privacy} |`);
     }
     lines.push("");
   }
@@ -115,4 +124,3 @@ for (const relative of await generatedFiles(actionsRoot)) {
 
 if (mismatches > 0) process.exitCode = 1;
 else console.log(`${checkOnly ? "Checked" : "Generated"} ${catalog.actions.length} action definitions from catalog ${catalog.revision}.`);
-

@@ -1,137 +1,152 @@
-# ActionClip Actions
+# ActionClip Actions: Quick Actions for Selected Text on Mac
 
 <p align="center">
-  <img src="assets/actionclip-logo.svg" width="96" height="96" alt="ActionClip">
+  <img src="assets/actionclip-logo.svg" width="96" height="96" alt="ActionClip app icon">
 </p>
 
 <p align="center">
-  <strong>The official action library for ActionClip.</strong><br>
-  Small, focused tools for selected text on macOS.
+  <strong>Browse 80+ ready-made actions for writing, formatting, searching, coding, clipboard work, and Mac app integrations.</strong>
 </p>
+
+Looking for a **PopClip alternative for Mac** or a faster way to work with selected text? [ActionClip](https://actionclip.app/) is a native macOS utility that places useful actions beside your selection. Highlight text in almost any Mac app, choose an action, and continue working without switching tools or digging through menus.
+
+This repository is the official library behind the ActionClip Marketplace. It lets you explore each action, understand what it does, check whether it works locally or uses another service, and view the action itself before adding it to your Mac.
 
 <p align="center">
-  <img alt="Status: private preview" src="https://img.shields.io/badge/status-private_preview-8957ff">
-  <img alt="82 actions" src="https://img.shields.io/badge/actions-82-17c964">
-  <img alt="Catalog schema 1" src="https://img.shields.io/badge/catalog_schema-1-2f81f7">
+  <a href="https://actionclip.app/download"><strong>Download ActionClip</strong></a>
+  ·
+  <a href="https://actionclip.app/marketplace"><strong>Explore the Marketplace</strong></a>
+  ·
+  <a href="ACTIONS.md"><strong>Browse every action</strong></a>
 </p>
 
-> [!IMPORTANT]
-> This repository is private while the Action Marketplace version of ActionClip is being prepared. It is intended to become public after that app release. Do not change the repository visibility before the release checklist is complete.
+## What can you do with selected text on a Mac?
 
-## What is here?
+ActionClip turns small, repeated text tasks into one-click actions. You can:
 
-This repository is the reviewable source for actions distributed through the ActionClip marketplace. Each action has its own portable `.actionclip.json` definition, while `catalog/catalog-v1.json` is the canonical catalog consumed by the app and publishing pipeline.
+- clean extra spaces and empty lines;
+- convert text to Markdown, camelCase, snake_case, or a URL slug;
+- extract links, email addresses, and other useful information;
+- format, validate, encode, or decode developer text;
+- append text to the clipboard or swap it with the current selection;
+- search Google Scholar, Wikipedia, YouTube, GitHub, MDN, or Stack Overflow;
+- draft replies, shorten writing, and turn notes into emails;
+- send selected text to apps such as DEVONthink, Tot, Scrivener, UpNote, Fluent, and Safari.
 
-| Library | Count | Examples |
-| --- | ---: | --- |
-| Text tools | 17 | Clean lines, Slugify, Markdown formatting |
-| Clipboard tools | 2 | Append to Clipboard, Swap with Clipboard |
-| Developer tools | 17 | JSON, URL, HTML, Base64, case conversion |
-| Productivity | 19 | Search, writing helpers, Large Type |
-| App integrations | 27 | Fluent, DEVONthink, Tot, Scrivener and more |
-| **Total** | **82** | [Browse every action](ACTIONS.md) |
+The goal is simple: select something, act on it, and stay in the app where you are already working.
 
-## Browse the library
+## A PopClip alternative for Mac text actions
 
-- [Text tools](ACTIONS.md#text-tools)
-- [Clipboard tools](ACTIONS.md#clipboard-tools)
-- [Developer tools](ACTIONS.md#developer-tools)
-- [Productivity](ACTIONS.md#productivity)
-- [App integrations](ACTIONS.md#app-integrations)
+PopClip popularized the idea of showing useful commands beside selected text. ActionClip follows the same selected-text workflow while offering its own approach to action suggestions, result previews, marketplace actions, and custom action creation.
 
-## Repository layout
+ActionClip may be a good PopClip alternative if you want:
 
-```text
-actions/                         One installable definition per action
-  text-tools/
-  clipboard-tools/
-  developer-tools/
-  productivity/
-  app-integrations/
-assets/app-icons/                App artwork used by integration listings
-catalog/catalog-v1.json          Canonical marketplace catalog
-schema/action-definition.schema.json
-scripts/sync-actions.mjs         Regenerate split actions and ACTIONS.md
-scripts/validate.mjs             Validate catalog and generated definitions
-```
+- a compact action menu attached to the text you selected;
+- contextual suggestions that bring relevant actions forward;
+- a preview before accepting many generated or transformed results;
+- ready-made actions plus a builder for your own repeated workflows;
+- clear control over local actions, online actions, and Mac app integrations;
+- a native macOS menu-bar utility rather than a general app launcher.
 
-## Action definition
+ActionClip and PopClip are independent products. ActionClip actions use their own format and are not PopClip extensions.
 
-Every file under `actions/` is self-contained and includes catalog provenance:
+## Browse the ActionClip action library
 
-```json
-{
-  "schemaVersion": 1,
-  "documentType": "actionclip.marketplace.action-definition",
-  "catalogRevision": "2026-08-21.1",
-  "publishedAt": "2026-08-20T18:50:00Z",
-  "action": {
-    "id": "510A0C00-0002-4D9A-A001-000000000002",
-    "name": "Clean Lines",
-    "type": "javascript",
-    "privacyKind": "onDevice"
-  }
-}
-```
+| Category | Useful for | Examples |
+| --- | --- | --- |
+| [Text tools](ACTIONS.md#text-tools) | Cleaning, formatting, wrapping, extracting, and reshaping text | Clean Lines, Slugify, Extract URLs |
+| [Clipboard tools](ACTIONS.md#clipboard-tools) | Combining selected text with clipboard content | Append to Clipboard, Swap with Clipboard |
+| [Developer tools](ACTIONS.md#developer-tools) | JSON, URLs, HTML, Base64, Unicode, and naming conventions | Pretty JSON, URL Decode, camelCase |
+| [Productivity](ACTIONS.md#productivity) | Research, writing, calculations, and quick utilities | Search Wikipedia, Meeting Follow-up, Large Type |
+| [App integrations](ACTIONS.md#app-integrations) | Sending selected text into the Mac apps you already use | DEVONthink, Tot, Scrivener, UpNote |
 
-The full contract is in [`schema/action-definition.schema.json`](schema/action-definition.schema.json). Important fields are:
+[See the complete action directory →](ACTIONS.md)
 
-| Field | Meaning |
-| --- | --- |
-| `id` | Stable identifier. Never reuse an existing ID for a different action. |
-| `type` | Action runtime: built-in, JavaScript, AppleScript, URL, or AI prompt. |
-| `template` | The executable template or internal action identifier. |
-| `outputMode` | Whether the result replaces text, is copied, or opens externally. |
-| `privacyKind` | On-device, online, or handed to an external Mac app. |
-| `requirements` | Setup or app requirements shown before installation. |
-| `integration` | Optional metadata that connects related actions to one app listing. |
+## Five useful actions to try first
 
-## Privacy model
+If you are new to selected-text utilities, start with a small set and add more when you need them:
 
-Action definitions must say where selected text goes. The marketplace uses three explicit privacy classes:
+1. **[Clean Lines](actions/text-tools/clean-lines.actionclip.json)** trims every line and removes empty ones.
+2. **[Append to Clipboard](actions/clipboard-tools/append-to-clipboard.actionclip.json)** adds the selection to what you already copied.
+3. **[Slugify](actions/text-tools/slugify.actionclip.json)** turns a title or phrase into a readable URL slug.
+4. **[Pretty JSON](actions/developer-tools/pretty-json.actionclip.json)** formats selected JSON for easier reading.
+5. **[Search Wikipedia](actions/productivity/search-wikipedia.actionclip.json)** searches for the selection without retyping it.
 
-- `onDevice`: the action runs locally inside ActionClip.
-- `online`: the action deliberately sends text to an online service.
-- `externalApp`: ActionClip hands text to another app installed on the Mac.
+## How to add and use marketplace actions
 
-An action may not hide network access, shell execution, clipboard mutation, or communication with another app. See [CONTRIBUTING.md](CONTRIBUTING.md) for the review requirements.
+1. [Download ActionClip for Mac](https://actionclip.app/download) and complete the short setup.
+2. Open **Actions Marketplace** inside ActionClip.
+3. Browse or search for an action that fits your workflow.
+4. Review its description, example, requirements, and privacy information.
+5. Choose **Add Action**.
+6. Select text in a Mac app and choose the new action from the floating ActionClip menu.
 
-## Working on the catalog
+The in-app marketplace is the easiest installation path. This GitHub library is useful when you want to browse the complete collection or inspect exactly how an action works.
 
-Node.js 20 or later is recommended. The repository has no runtime package dependencies.
+## What happens to your selected text?
 
-```bash
-npm run sync
-npm test
-```
+Every marketplace action explains where it runs before you add it:
 
-`npm run sync` regenerates every split definition and `ACTIONS.md` from the canonical catalog. `npm test` validates required fields, enum values, unique IDs and names, generated files, privacy metadata, and catalog consistency.
+- **On your Mac:** Text is processed locally by ActionClip.
+- **Online:** The action opens or deliberately uses an online service. Online actions remain under your control.
+- **In another Mac app:** ActionClip passes the selection to the named app you chose to use.
 
-## Publishing flow
+Selected text is not uploaded simply because the ActionClip menu appears. Read the [ActionClip Privacy Policy](https://actionclip.app/privacy) for the complete explanation.
 
-1. Edit and review `catalog/catalog-v1.json`.
-2. Run `npm run sync`.
-3. Run `npm test` and review the generated diff.
-4. Test the affected actions in the current ActionClip marketplace build.
-5. Publish the validated catalog through the ActionClip release pipeline.
+## See what an action does before adding it
 
-The app should fetch signed or otherwise trusted marketplace data from the release backend. This repository is the human-readable source and review surface; making it public must not make an unreviewed pull request automatically available in the app.
+Each action in this repository includes:
 
-## Public-release checklist
+- a plain-language explanation;
+- example input and output;
+- any app, permission, or setup requirement;
+- a clear privacy description;
+- the action instructions or code that ActionClip runs.
 
-- [ ] Marketplace-capable ActionClip version is publicly available.
-- [ ] Every action has passed functional and privacy review.
-- [ ] Download/import behavior is tested with the released app.
-- [ ] Public contribution and moderation workflow is ready.
-- [ ] Final open-source or source-available license is chosen explicitly.
-- [ ] Security contact and support links are confirmed.
-- [ ] Repository visibility is changed only after the checks above.
+For example, [Extract Email Addresses](actions/text-tools/extract-email-addresses.actionclip.json) shows the exact local transformation used to find and deduplicate email addresses. [Append to Clipboard](actions/clipboard-tools/append-to-clipboard.actionclip.json) explains how it combines selected text with the existing Mac clipboard.
+
+## Frequently asked questions
+
+### Is ActionClip a PopClip alternative?
+
+Yes. Both products help you act on selected text from a compact menu near the selection. ActionClip adds its own contextual suggestions, result previews, Action Marketplace, and custom action builder. The best choice depends on which interaction and action ecosystem fits your workflow.
+
+### Are these PopClip extensions?
+
+No. These are ActionClip marketplace actions. They solve many of the same quick Mac text tasks, but they are designed for ActionClip and are not directly installable in PopClip.
+
+### Do I need AI or an API key?
+
+No. Many actions—including text cleanup, Markdown formatting, JSON tools, clipboard actions, calculations, and conversions—work without AI. Actions that use an online AI provider say so before installation.
+
+### Do actions work in every Mac app?
+
+ActionClip works in most apps that expose selected text through macOS Accessibility. Custom editors, remote desktops, and unusual interfaces may behave differently.
+
+### Does ActionClip require an account?
+
+No ActionClip account is required. Download the app, grant the macOS permission needed to read selected text, and start with the included actions.
+
+### Can I make my own actions?
+
+Yes. ActionClip can create custom text transformations, prompts, links, AppleScript workflows, and other actions for repeated text work. Your saved actions appear beside selected text just like built-in and marketplace actions.
+
+### Which macOS version does ActionClip require?
+
+ActionClip requires macOS 15.0 or later. Some optional features, including Apple Intelligence, also depend on compatible Mac hardware and system availability.
+
+## More ActionClip resources
+
+- [Download ActionClip for Mac](https://actionclip.app/download)
+- [Explore the web Action Marketplace](https://actionclip.app/marketplace)
+- [See ActionClip’s built-in actions](https://actionclip.app/actions)
+- [Learn how ActionClip handles privacy](https://actionclip.app/privacy)
+- [Visit the ActionClip website](https://actionclip.app/)
 
 ## Trademarks and app icons
 
-Third-party product names and app icons identify compatible integrations. They remain the property of their respective owners and do not imply sponsorship or endorsement. Fluent UI System Icon names are used under Microsoft's MIT-licensed icon system; see the ActionClip product distribution for its bundled attribution.
+Third-party product names and app icons identify compatible integrations. They remain the property of their respective owners and do not imply sponsorship or endorsement. PopClip is a product of Pilotmoon Software; ActionClip is not affiliated with or endorsed by Pilotmoon Software.
 
 ## License
 
 Copyright © 2026 ActionClip. All rights reserved. See [LICENSE](LICENSE).
-
